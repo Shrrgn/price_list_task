@@ -2,9 +2,9 @@
 	class Connection {
 
 		private static $host = "localhost";
-		private static $db = "users_db";
-		private static $user = "artem";
-		private static $password = "artem";
+		private static $db = "test1";
+		private static $user = "user";
+		private static $password = "password";
 
 		function __construct(){
 			try {
@@ -20,10 +20,6 @@
 
 		function getPDO(){
 			return $this->pdo;
-		}
-
-		function destroy_connection(){
-			$this->pdo = null;
 		}
 
 		static function db_error($string, $exception){
