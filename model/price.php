@@ -1,6 +1,6 @@
 <?php
 
-	require_once '../config/db.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 
 	class Price {
 
@@ -16,7 +16,7 @@
 								FROM Product as t1, DocPrice as t2, DocPriceBody as t3 
     							INNER JOIN Product as pr ON t3.product_id = pr.id 
     							INNER JOIN DocPrice as dp ON t3.doc_id = dp.id
-    							WHERE date(t2.create_datetime) = '2017-05-16';';
+    							WHERE date(t2.create_datetime) = "2017-05-16";';
 				$result = $this->pdo->query($sql);
 			}
 			catch (PDOException $e) {

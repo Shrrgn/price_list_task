@@ -1,14 +1,14 @@
 <?php
 	
-	require_once '../model/price.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/model/price.php';
 
 	class PriceController {
 
 		function __construct(){
-			$this->price = new Price();
-			$data = $price.getData();
+			$price = new Price();
+			$data = $price->getData();
 
-			include '../views/view.php';
+			include $_SERVER['DOCUMENT_ROOT'] . '/views/view.php';
 		}
 	}
 ?>
