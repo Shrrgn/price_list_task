@@ -55,13 +55,21 @@ INSERT INTO DocPriceBody (doc_id, product_id, price)
 		   (3, 2, 0.8),
 		   (4, 2, 1.23);
 
+INSERT INTO DocPriceBody (doc_id, product_id, price)
+	VALUES (1,4,2.05),
+		   (1,5,6.33),
+		   (1,1,5.1);
+
+
 SELECT t1.title as Title, t2.price as Price 
 	FROM Product as t1, DocPriceBody as t2 
 	INNER JOIN Product as t ON t2.product_id = t.id; 
 
 
-SELECT t1.title as Title, t1.description as Description, max(t2.id) as DocId, date(t2.create_datetime) as Apply_datetime, t3.price as Price 
-	FROM Product as t1, DocPrice as t2, DocPriceBody as t3 
-    INNER JOIN Product as pr ON t3.product_id = pr.id 
-    INNER JOIN DocPrice as dp ON t3.doc_id = dp.id
-    WHERE date(t2.create_datetime) = '2017-05-16';
+SELECT title, description, doc_id, date(create_datetime), price 
+	FROM DocPriceBody dpc 
+	INNER JOIN Product as pr ON dpc.product_id = pr.id 
+    INNER JOIN DocPrice as dp ON dpc.doc_id = dp.id 
+    WHERE date(create_datetime) = "2017-05-13"
+    GROUP BY title
+    HAVING max(dpc.id)
