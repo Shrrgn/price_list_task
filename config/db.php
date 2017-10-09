@@ -25,12 +25,10 @@
 		function getPrices($date){
 			try {
 				$sql = 'SELECT title, description, doc_id, date(create_datetime), price 
-							FROM DocPriceBody dpc 
+							FROM (SELECT max(id) as DPCId, doc_id, product_id, price FROM DocPriceBody GROUP BY product_id) as dpc 
 							INNER JOIN Product as pr ON dpc.product_id = pr.id 
     						INNER JOIN DocPrice as dp ON dpc.doc_id = dp.id 
-    						WHERE date(create_datetime) = :create_date
-    						GROUP BY title
-    						HAVING max(dpc.id)';
+    						WHERE date(create_datetime) = :create_date';
 				$s = $this->pdo->prepare($sql);
 				$s->bindParam(':create_date', $date, PDO::PARAM_STR);
 				$s->execute();

@@ -5,7 +5,7 @@
 	class PriceController {
 
 		function __construct(){
-			$price = new Price("2017-05-16");
+			$price = new Price("2017-05-13");
 			$data = $price->getData();
 
 			include $_SERVER['DOCUMENT_ROOT'] . '/views/view.php';

@@ -60,6 +60,9 @@ INSERT INTO DocPriceBody (doc_id, product_id, price)
 		   (1,5,6.33),
 		   (1,1,5.1);
 
+INSERT INTO DocPriceBody (doc_id, product_id, price)
+	VALUES (1,5,0.95);
+
 
 SELECT t1.title as Title, t2.price as Price 
 	FROM Product as t1, DocPriceBody as t2 
